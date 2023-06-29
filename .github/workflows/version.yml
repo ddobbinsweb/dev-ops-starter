@@ -39,7 +39,7 @@ jobs:
     needs: calculate-version
     env:
       SEMVER: ${{ needs.calculate-version.outputs.semVer }}
-      GH_TOKEN: ${{ github.token }}
+    # GH_TOKEN: ${{ github.token }}
     steps:
       - name: Create Tag
         run: |
