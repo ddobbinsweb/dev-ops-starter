@@ -13,9 +13,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This gets the Semantic Version
   calculate-version:
     name: Calculate Version
     runs-on: ubuntu-latest
+    outputs:
+      semVer: ${{ steps.gitversion.outputs.semVer }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -29,8 +32,15 @@ jobs:
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
-      
-      - name: Create Release Tag
+  # This creates a tag
+  create-tag:
+    name: Create Tag from Semantic Version
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    env:
+      SEMVER: ${{ needs.calculate-version.outputs.semVer }}
+    steps:
+      - name: Create Tag
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
