@@ -19,25 +19,27 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-    outputs:
-      semVer: ${{ steps.gitversion.outputs.semVer }}
+    # outputs:
+    #   semVer: ${{ steps.gitversion.outputs.semVer }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0
         with:
          versionSpec: '5.x'
 
       - name: Determine Version
-        id: gitversion
         uses: gittools/actions/gitversion/execute@v0
+
       - name: Create Tag
         run: |
          git tag rc.${{ env.semVer }}
          git push origin rc.${{ env.semVer }}
+
   # # This creates a tag
   # create-tag:
   #   name: Create Tag from Semantic Version
