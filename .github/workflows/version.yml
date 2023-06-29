@@ -33,5 +33,6 @@ jobs:
       - name: Create Release Tag
         run: |
           git tag rc.${{ steps.gitversion.outputs.semVer }}
+          git push origin rc.${{ steps.gitversion.outputs.semVer }}
 
 
