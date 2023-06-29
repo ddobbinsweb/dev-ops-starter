@@ -16,8 +16,6 @@ jobs:
   calculate-version:
     name: Calculate Version
     runs-on: ubuntu-latest
-    outputs:
-      branchName: ${{ steps.gitversion.outputs.branchName }} # To use an output in another job, you have to map it to a job output.
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,13 +29,9 @@ jobs:
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
+      
+      - name: Create Release Tag
+        run: |
+          git tag rc.$(GitVersion.SemVer)
 
-  create-release-notes:
-    name: Create Release Notes
-    runs-on: ubuntu-latest
-    needs: calculate-version
-    if: contains(needs.calculate-version.outputs.branchName, 'main') # Output variable accessed via `needs` context.
-    steps:
-      - run: |
-          # Output variables can also be accessed in steps, using an expression.
-          echo "Creating release notes for ${{ needs.calculate-version.outputs.branchName }} branch."
+
