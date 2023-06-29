@@ -33,5 +33,5 @@ jobs:
 
       - name: Create Tag
         run: |
-         git tag rc.${{ env.GitVersion_SemVer }}
-         git push origin rc.${{ env.GitVersion_SemVer }}
+         git tag rc.${{ env.GitVersion_FullSemVer }}
+         git push origin rc.${{ env.GitVersion_FullSemVer }}
