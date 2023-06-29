@@ -32,6 +32,8 @@ jobs:
       
       - name: Create Release Tag
         run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           git tag rc.${{ steps.gitversion.outputs.semVer }}
           git push origin rc.${{ steps.gitversion.outputs.semVer }}
 
