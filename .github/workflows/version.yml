@@ -32,6 +32,6 @@ jobs:
       
       - name: Create Release Tag
         run: |
-          git tag rc.$(GitVersion.SemVer)
+          git tag rc.${{ steps.gitversion.outputs.semVer }}
 
 
