@@ -37,8 +37,8 @@ jobs:
 
       - name: Create Tag
         run: |
-         git tag rc.${{ env.semVer }}
-         git push origin rc.${{ env.semVer }}
+         git tag rc.${{ env.GitVersion_SemVer }}
+         git push origin rc.${{ env.GitVersion_SemVer }}
 
   # # This creates a tag
   # create-tag:
