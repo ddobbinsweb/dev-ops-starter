@@ -1,6 +1,5 @@
 name: Git Version
 
-# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
@@ -11,16 +10,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This gets the Semantic Version
-  calculate-version:
-    name: Calculate Version
+  # This Create Release Candidate Tag
+  create-rc-tag:
+    name: Create Release Candidate Tag
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
-    # outputs:
-    #   semVer: ${{ steps.gitversion.outputs.semVer }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,19 +35,3 @@ jobs:
         run: |
          git tag rc.${{ env.GitVersion_SemVer }}
          git push origin rc.${{ env.GitVersion_SemVer }}
-
-  # # This creates a tag
-  # create-tag:
-  #   name: Create Tag from Semantic Version
-  #   runs-on: ubuntu-latest
-  #   needs: calculate-version
-  #   env:
-  #     SEMVER: ${{ needs.calculate-version.outputs.semVer }}
-  #   # GH_TOKEN: ${{ github.token }}
-  #   steps:
-  #     - name: Create Tag
-  #       run: |
-  #        git tag rc.${{ env.SEMVER }}
-  #        git push origin rc.${{ env.SEMVER }}
-
-
