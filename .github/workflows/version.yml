@@ -17,6 +17,8 @@ jobs:
   calculate-version:
     name: Calculate Version
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
     steps:
@@ -32,18 +34,22 @@ jobs:
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
-  # This creates a tag
-  create-tag:
-    name: Create Tag from Semantic Version
-    runs-on: ubuntu-latest
-    needs: calculate-version
-    env:
-      SEMVER: ${{ needs.calculate-version.outputs.semVer }}
-    # GH_TOKEN: ${{ github.token }}
-    steps:
       - name: Create Tag
         run: |
-         git tag rc.${{ env.SEMVER }}
-         git push origin rc.${{ env.SEMVER }}
+         git tag rc.${{ env.semVer }}
+         git push origin rc.${{ env.semVer }}
+  # # This creates a tag
+  # create-tag:
+  #   name: Create Tag from Semantic Version
+  #   runs-on: ubuntu-latest
+  #   needs: calculate-version
+  #   env:
+  #     SEMVER: ${{ needs.calculate-version.outputs.semVer }}
+  #   # GH_TOKEN: ${{ github.token }}
+  #   steps:
+  #     - name: Create Tag
+  #       run: |
+  #        git tag rc.${{ env.SEMVER }}
+  #        git push origin rc.${{ env.SEMVER }}
 
 
