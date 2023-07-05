@@ -1,4 +1,4 @@
-import unittest 
+import unittest
 
 from src.functions import add, subtract, multiply, division
 
