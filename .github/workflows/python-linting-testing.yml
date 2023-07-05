@@ -38,4 +38,4 @@ jobs:
                 pytest
             - name: Code Coverage
               run: |
-                pytest --cov-report term:skip-covered --cov=src tests/
+                pytest --cov-report term:skip-covered --cov=src
