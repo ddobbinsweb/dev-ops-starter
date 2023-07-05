@@ -1,10 +1,10 @@
 on:
     push:
-      branches: [ python-yaml-on-main ]
+      branches: [ main ]
       paths:
         'python/**'
     pull_request:
-      branches: [ python-yaml-on-main ]
+      branches: [ main ]
       paths:
         'python/**'
     workflow_dispatch:
