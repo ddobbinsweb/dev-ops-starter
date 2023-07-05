@@ -1,12 +1,12 @@
 on:
     push:
-      branches: [ python ]
-     # paths:
-     #   - '../../python/**'
+      branches: [ main ]
+      paths:
+        '../../python/**'
     pull_request:
-      branches: [ python ]
-    #  paths:
-     #   - '../../python/**'
+      branches: [ main ]
+      paths:
+        '../../python/**'
 jobs:
     build:
         runs-on: ubuntu-latest
