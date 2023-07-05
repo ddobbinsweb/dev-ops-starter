@@ -7,3 +7,4 @@
 use python linting and test yaml
 `SOURCE\dev-ops-starter\.github\workflows\python-linting-testing.yml`
 
+- TODO: add more details
