@@ -2,11 +2,11 @@ on:
     push:
       branches: [ python ]
       paths:
-        - '../../python/src'
+        - '../../python/**'
     pull_request:
       branches: [ python ]
       paths:
-        - '../../python/src'
+        - '../../python/**'
 jobs:
     build:
         runs-on: ubuntu-latest
