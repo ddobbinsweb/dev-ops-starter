@@ -6,6 +6,6 @@
 ## Usage
 use python linting and test yaml
 `SOURCE\dev-ops-starter\.github\workflows\python-linting-testing.yml`
----
+
 ## Tech Notes
 - TODO: add more details
