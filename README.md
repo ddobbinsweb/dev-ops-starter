@@ -1,7 +1,7 @@
-# dev-ops-starter
+#  🧰 Devops Starter Kits
 Dev Op Starter pipelines and snippets
 
-## Version Bumping
+## 🔖 Version Bumping
 use `version.yml`
 
 ### prerequisites
@@ -11,10 +11,10 @@ Workflow Permissions select 'Read and write Permissions'
 this can be added to a merge or closed pull request to create a rc tag.
 
 
-## Python
+## 🐛 Python
 see [here](python\README.md)
 
-## Auto Assign
+## ✅ Auto Assign
 ### setup
 edit `auto_assign.yml` [here](.github\auto_assign.yml)
 doc: [here](https://github.com/kentaro-m/auto-assign-action)
