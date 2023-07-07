@@ -1,5 +1,5 @@
-# Python
-- setup linting , unit tests and code coverage
+# 🐛 Python
+ setup linting , unit tests and code coverage
 ## Badges
 [![.github/workflows/python-linting-testing.yml](https://github.com/ddobbinsweb/dev-ops-starter/actions/workflows/python-linting-testing.yml/badge.svg)](https://github.com/ddobbinsweb/dev-ops-starter/actions/workflows/python-linting-testing.yml)
 
