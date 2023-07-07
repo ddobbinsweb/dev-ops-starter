@@ -1,0 +1,39 @@
+name: Azure KeyVault
+# Add branch trigger 
+# add secrets for 
+# AZURE_CREDENTIALS
+# AZURE_KEY_VAULT_NAME
+# AZURE_KEY_VAULT_SECRET_NAME
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the repo
+    - uses: actions/checkout@master
+      # Azure Login
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }} 
+      # example of how to get kevault secret
+    - name: Get KeyVault Values
+      id: az-values
+      run: |
+        version=$(az --version) >>  "$GITHUB_OUTPUT"
+        secret=$(az keyvault secret show --vault-name ${{ secret.AZURE_KEY_VAULT_NAME }} - --name ${{ secret.AZURE_KEY_VAULT_SECRET_NAME }} --query value -o tsv) >> "$GITHUB_OUTPUT"
+      # example of vault outputs
+    - name: Use keyVault Values
+      run: |
+        echo ${{ steps.az-values.output.version }}
+        echo ${{ steps.az-values.output.secret }}
+      # Harden Security
+    - name: Azure Logout
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az logout
+          az cache purge
+          az account clear
