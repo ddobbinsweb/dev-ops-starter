@@ -5,6 +5,6 @@ which features or solution the project needs.
 
 
 ## Table of Contents
-1. 🔖 [Version Tagging](version\README.md)
-1. 🐛 [Python unit testing, formatting, code Coverage](python\README.md)
-1. ✅ [Auto Assign](auto-assign\README.md)
+1. 🔖 [Version Tagging](version/README.md)
+1. 🐛 [Python unit testing, formatting, code Coverage](python/README.md)
+1. ✅ [Auto Assign](auto-assign/README.md)
