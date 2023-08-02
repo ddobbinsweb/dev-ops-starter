@@ -1,0 +1,39 @@
+name: Create Tag
+
+on:
+  # Triggers the workflow on push events but only for the "develop" branch
+  # change this to your develop branch if you want git tags created after each merge into develop branch.
+  push:
+    branches: [ "develop" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+env:
+  TAG_PREFIX: RC # tag pre fix name can be changed 
+
+jobs:
+  # This Create Tag
+  create-rc-tag:
+    name: Create Tag
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+         versionSpec: '5.x'
+
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0
+      # GitVersion_FullSemVer can be changed for other options
+      # here https://github.com/GitTools/actions/blob/main/docs/examples/github/gitversion/execute/usage-examples.md
+      - name: Create Tag
+        run: |
+         git tag ${{ env.TAG_PREFIX }}.${{ env.GitVersion_FullSemVer }} 
+         git push origin ${{ env.TAG_PREFIX }}.${{ env.GitVersion_FullSemVer }}
