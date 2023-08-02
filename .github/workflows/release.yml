@@ -35,6 +35,6 @@ jobs:
     
     - name: Create Release
       run: |
-        gh release create ${{env.TAG_PREFIX}}.${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.TAG_PREFIX}}.${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  -p --generate-notes
+        gh release create ${{env.TAG_PREFIX}}.${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.TAG_PREFIX}}.${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  --generate-notes
 
 
