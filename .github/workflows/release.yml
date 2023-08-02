@@ -34,7 +34,7 @@ jobs:
     
     - name: Create Release
       run: |
-        gh release create ${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  -p
+        gh release create rc.${{env.GitVersion_MajorMinorPatch}} -t 'Release Candidate ${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  -p
 
   create-release:
     name: Create Release
@@ -59,6 +59,6 @@ jobs:
     
     - name: Create Release
       run: |
-        gh release create ${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  --generate-notes
+        gh release edit rc.${{env.GitVersion_MajorMinorPatch}} --tag ${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  --generate-notes --prerelease=false
 
 
