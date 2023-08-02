@@ -44,8 +44,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         owner: 'ddobbinsweb'
         repository: 'dev-ops-starter'
-        milestone: '${{ env.GitVersion_FullSemVer }}'
-        name: 'v${{ env.GitVersion_FullSemVer }}'
+        milestone: '${{ env.GitVersion_MajorMinorPatch}}'
+        name: 'v${{ env.GitVersion_MajorMinorPatch}}'
         # assets:  |
         #     src/test.txt
         #     src/test1.txt
