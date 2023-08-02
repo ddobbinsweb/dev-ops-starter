@@ -1,0 +1,41 @@
+name: Release 
+
+on: 
+  pull_request:
+    types: [closed]
+    branches: [prod]
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v3
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0
+      with:
+       versionSpec: '5.x'
+
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0
+
+    - uses: gittools/actions/gitreleasemanager/setupv0
+      name: Install GitReleaseManager
+      with:
+       versionSpec: '0.10.x'
+
+    - uses: gittools/actions/gitreleasemanager/createv0
+      name: Create release with GitReleaseManager
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        owner: 'ddobbinsweb'
+        repository: 'dev-ops-starter'
+        milestone: '${{ env.GitVersion_FullSemVer }}'
+        name: 'v${{ env.GitVersion_FullSemVer }}'
+        # assets:  |
+        #     src/test.txt
+        #     src/test1.txt
+
+
