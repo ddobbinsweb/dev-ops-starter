@@ -1,3 +1,5 @@
+# both jobs uses Github CLI to create and edit a release. 
+# more info here https://cli.github.com/manual/gh_release
 name: Release
 
 # Controls when the workflow will run
@@ -7,35 +9,13 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+env:
+  TAG_PREFIX: v # tag pre fix name can be changed 
     
 jobs:
-  create-pre-release:
-    name: Create Pre-Release
-    runs-on: ubuntu-latest
-    env:
-        GH_TOKEN: ${{ github.token }}
-    steps:
-    
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0
-      with:
-        versionSpec: '5.x'
-
-    - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v0
-    
-    - name: Create Release
-      run: |
-        gh release create rc.${{env.GitVersion_MajorMinorPatch}} -t 'Release Candidate ${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  -p --generate-notes
   create-release:
     name: Create Release
     runs-on: ubuntu-latest
-    needs: create-pre-release
     env:
         GH_TOKEN: ${{ github.token }}
     steps:
@@ -55,6 +35,6 @@ jobs:
     
     - name: Create Release
       run: |
-        gh release edit rc.${{env.GitVersion_MajorMinorPatch}} --tag ${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  --prerelease=false
+        gh release create ${{env.TAG_PREFIX}}.${{env.GitVersion_MajorMinorPatch}} -t 'Release ${{env.TAG_PREFIX}}.${{env.GitVersion_MajorMinorPatch}}' --target ${{github.ref}}  -p --generate-notes
 
 
