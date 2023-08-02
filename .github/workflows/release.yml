@@ -1,9 +1,11 @@
 name: Release 
 
 on: 
-  pull_request:
-    types: [closed]
-    branches: [prod]
+    pull_request:
+        branches: [feature/release-management]
+#   pull_request:
+#     types: [closed]
+#     branches: [prod]
 
 jobs:
   create-release:
