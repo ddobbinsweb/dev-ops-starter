@@ -4,12 +4,17 @@
 name: .NET
 
 on:
-  pull_request:
-    branches:
-         "main" 
+  push:
+    branches: [ main ]
     paths: 
-        "dotnet/**"
+        - "dotnet/**"
+  pull_request:
+    branches: [ main ]
+    paths: 
+        - "dotnet/**"
+
   workflow_dispatch:
+    
 jobs:
   build:
 
