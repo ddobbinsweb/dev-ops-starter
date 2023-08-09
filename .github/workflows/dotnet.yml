@@ -47,11 +47,7 @@ jobs:
       run: dotnet build --no-restore /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} 
     - name: Test
       working-directory: ${{env.working-directory}}
-      run: dotnet test --output build --collect:"XPlat Code Coverage";
-
-    - name: ReportGenerator
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
+    - uses: codecov/codecov-action@v3
       with:
-        reports: '../coverage.cobertura.xml'
-        targetdir: coveragereport
-        reporttypes: Cobertura;XML;MarkdownSummaryGithub
+        token: ${{ secrets.CODECOV_TOKEN }}
