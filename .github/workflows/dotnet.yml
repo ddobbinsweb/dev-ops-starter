@@ -40,7 +40,7 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: ${{env.working-directory}}
-      run: dotnet build --no-restore /p:AssemblyVersion=1.0.0.${{ env.GitVersion_BuildMetaData }} 
+      run: dotnet build --no-restore /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} 
     - name: Test
       working-directory: ${{env.working-directory}}
       run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
