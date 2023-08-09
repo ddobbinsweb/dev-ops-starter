@@ -46,6 +46,6 @@ jobs:
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
       with:
-        reports: cobertura.xml
+        reports: /dotnet/tests/starter-api-tests/TestResults/*/coverage.cobertura.xml
         targetdir: coveragereport
         reporttypes: Cobertura;XML;MarkdownSummaryGithub
