@@ -7,11 +7,12 @@ on:
   push:
     branches: [ "feature/dotnet" ]
     paths: 
-        'dotnet/*'
+        'dotnet/**'
   pull_request:
     branches: [ "feature/dotnet" ]
     paths: 
-        'dotnet/*'
+        'dotnet/**'
+  workflow_dispatch:
 jobs:
   build:
 
