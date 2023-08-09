@@ -35,6 +35,8 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
+        dotnet-quality: 'ga'
+
     - name: Restore dependencies
       working-directory: ${{env.working-directory}}
       run: dotnet restore
@@ -43,12 +45,11 @@ jobs:
       run: dotnet build --no-restore /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} 
     - name: Test
       working-directory: ${{env.working-directory}}
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertuna
-    - uses: codecov/codecov-action@v3
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true
+
+    - name: ReportGenerator
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        # files:  ${{  github.env }}/**/**.coverage # optional
-        # flags: unittests # optional
-        # name: codecov-umbrella # optional
-        # fail_ci_if_error: true # optional (default = false)
-        # verbose: true # optional (default = false)
+        reports: cobertura.xml
+        targetdir: coveragereport
+        reporttypes: Cobertura;XML;MarkdownSummaryGithub
