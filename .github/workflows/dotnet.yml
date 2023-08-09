@@ -42,6 +42,7 @@ jobs:
       working-directory: ${{env.working-directory}}
       run: dotnet build --no-restore /p:AssemblyVersion=1.0.0.${{ env.GitVersion_BuildMetaData }} 
     - name: Test
+      working-directory: ${{env.working-directory}}
       run: dotnet test --no-build --verbosity normal --collect:"Code Coverage" 
     - uses: codecov/codecov-action@v3
       with:
