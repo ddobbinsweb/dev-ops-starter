@@ -17,7 +17,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      working-directory: ./dotnet
     steps:
     - uses: actions/checkout@v3
       with:
@@ -35,9 +36,11 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
+      working-directory: ${{env.working-directory}}
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore /p:AssemblyVersion=${{ env.GitVersion_FullSemVer }} 
+      working-directory: ${{env.working-directory}}
+      run: dotnet build --no-restore /p:AssemblyVersion=1.0.0.${{ env.GitVersion_BuildMetaData }} 
     - name: Test
       run: dotnet test --no-build --verbosity normal --collect:"Code Coverage" 
     - uses: codecov/codecov-action@v3
