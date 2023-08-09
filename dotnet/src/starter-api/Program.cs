@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // system api endpoints
-app.MapGet("/system", () => Assembly.GetExecutingAssembly().GetName().Version.ToString());
+app.MapGet("/system", () => Assembly.GetExecutingAssembly().GetName().Version?.ToString());
 app.MapHealthChecks("/health", new HealthCheckOptions()
 {
     Predicate = p => false
