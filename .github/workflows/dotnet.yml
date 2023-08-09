@@ -45,7 +45,7 @@ jobs:
       run: dotnet build --no-restore /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} 
     - name: Test
       working-directory: ${{env.working-directory}}
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true --collect:"XPlat Code Coverage"
 
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
