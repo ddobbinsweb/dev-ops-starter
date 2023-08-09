@@ -5,16 +5,16 @@ name: .NET
 
 on:
   push:
-    branches: [ main ]
+    branches: [ feature/test-code-coverage ]
     paths: 
         - "dotnet/**"
   pull_request:
-    branches: [ main ]
+    branches: [ feature/test-code-coverage ]
     paths: 
         - "dotnet/**"
 
   workflow_dispatch:
-    
+
 jobs:
   build:
 
