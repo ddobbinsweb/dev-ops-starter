@@ -5,11 +5,11 @@ name: .NET
 
 on:
   push:
-    branches: [ "feature/dotnet" ]
+    branches: [ "main" ]
     paths: 
         'dotnet/**'
   pull_request:
-    branches: [ "feature/dotnet" ]
+    branches: [ "main" ]
     paths: 
         'dotnet/**'
   workflow_dispatch:
