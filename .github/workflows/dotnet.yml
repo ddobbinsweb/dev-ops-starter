@@ -43,12 +43,12 @@ jobs:
       run: dotnet build --no-restore /p:AssemblyVersion=1.0.0.${{ env.GitVersion_BuildMetaData }} 
     - name: Test
       working-directory: ${{env.working-directory}}
-      run: dotnet test --no-build --verbosity normal --collect:"Code Coverage" 
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files:  ${{  github.env }}/**/**.coverage # optional
-        flags: unittests # optional
-        name: codecov-umbrella # optional
-        fail_ci_if_error: true # optional (default = false)
-        verbose: true # optional (default = false)
+        # files:  ${{  github.env }}/**/**.coverage # optional
+        # flags: unittests # optional
+        # name: codecov-umbrella # optional
+        # fail_ci_if_error: true # optional (default = false)
+        # verbose: true # optional (default = false)
