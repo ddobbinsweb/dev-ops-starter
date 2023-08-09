@@ -5,11 +5,11 @@ name: .NET
 
 on:
   push:
-    branches: [ feature/test-code-coverage ]
+    branches: [ main]
     paths: 
         - "dotnet/**"
   pull_request:
-    branches: [ feature/test-code-coverage ]
+    branches: [ main ]
     paths: 
         - "dotnet/**"
 
