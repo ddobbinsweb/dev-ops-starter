@@ -43,7 +43,7 @@ jobs:
       run: dotnet build --no-restore /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} 
     - name: Test
       working-directory: ${{env.working-directory}}
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertuna
     - uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
