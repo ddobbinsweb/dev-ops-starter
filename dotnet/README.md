@@ -3,3 +3,4 @@
 
 ## Usage
 basic dotnet start dev ops
+with code coverage
