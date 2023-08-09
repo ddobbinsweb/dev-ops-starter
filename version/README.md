@@ -15,4 +15,6 @@ GitHub Actions need 'Read and write Permissions'.
 1. move  `release.yml` into `.github/workflows/`
 1. edit `release.yml` to use either release candidate job or release job.
 
-## Create Pull Request
+## Create Release from Tag
+1. move  `release-from-tag.yml` into `.github/workflows/`
+1. edit `release-from-tag.yml` to use correct branch and tags
