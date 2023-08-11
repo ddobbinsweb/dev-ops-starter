@@ -5,11 +5,11 @@ name: React CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "feature/react" ]
     paths:
         - 'react/**'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "feature/react" ]
     paths:
         - 'react/**'
 
