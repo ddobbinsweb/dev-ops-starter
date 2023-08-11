@@ -27,7 +27,7 @@ az ad sp create-for-rbac --name "myApp" --role contributor \
 Add the json output as a secret (let's say with the name AZURE_CREDENTIALS) in the GitHub repository.
 
 
-## KeyVault 
+# KeyVault 
 access keyvault secrets and keys
 
 ## Setup
@@ -42,5 +42,5 @@ az keyvault set-policy -n $KV_NAME --secret-permissions get list --spn <clientId
 For more details, refer to [KeyVault Set-Policy](https://docs.microsoft.com/en-us/cli/azure/keyvault?view=azure-cli-latest#az-keyvault-set-policy).
 
 ## example
-
+[here](az-keyvault.yml)
 
