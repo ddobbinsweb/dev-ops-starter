@@ -1,0 +1,23 @@
+name: Deployment 
+
+on:
+  push:
+    branches:
+    - "main"
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: Test
+    concurrency: Test
+
+    steps:
+    - name: Build
+      run: |
+        echo "Run build command"
+    - name: Test
+      run: |
+        echo "Run Tests"
+    - name: Deploy
+      run: |
+        echo "Run deployment action or cli command"
