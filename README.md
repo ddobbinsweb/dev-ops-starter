@@ -6,7 +6,7 @@ which features or solution the project needs.
 ## Table of Contents
 
 -  [   Azure](#azure) 
--   [GitHub](#github)
+-  [GitHub](#github)
 -  [Language Specific](#languages)
 
 
@@ -23,6 +23,7 @@ GitHub specific workflows
 1. [Auto assign](auto-assign/README.md) - auto assign issue or pull request to users in predefined list.
 1. [Release Notes](.github/release.yml) - Customize Auto Generated Release notes [Docs](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes#configuring-automatically-generated-release-notes)
 1. [Version Tagging](version/README.md) - git tags and releases
+1. [Deployments](deployments/README.md)
 
 ## 👩‍💻 Languages  
 Language specific workflows
