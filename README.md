@@ -37,4 +37,7 @@ Language specific workflows
 
  ## :hook: Git Hooks
  git hooks are client side script located in the .git/hooks folder. 
- 
+ ### map git hook folder
+ ```Cmd
+ Git config --global core.hooksPath '~/.githooks'
+ ```
