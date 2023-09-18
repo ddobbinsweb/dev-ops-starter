@@ -8,7 +8,7 @@ which features or solution the project needs.
 -  [Azure](#azure) 
 -  [GitHub](#github)
 -  [Language Specific](#languages)
-
+-  [Git Hooks](#githooks)
 
 
 ## <img width="25" src="https://user-images.githubusercontent.com/25181517/183911544-95ad6ba7-09bf-4040-ac44-0adafedb9616.png" alt="Microsoft Azure" title="Microsoft Azure"/> Azure 
@@ -34,3 +34,7 @@ Language specific workflows
  [<img width="25" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png" alt="React" title="React"/>  Node](react-app/README.md)
 
  [<img width="25" src="https://user-images.githubusercontent.com/25181517/183423507-c056a6f9-1ba8-4312-a350-19bcbc5a8697.png" alt="Python" title="Python"/> Python](python/README.md)
+
+ ## :hook: Git Hooks
+ git hooks are client side script located in the .git/hooks folder. 
+ 
