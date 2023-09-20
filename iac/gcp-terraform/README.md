@@ -28,3 +28,40 @@ is a Software as Service (SaaS) offering for:
 
 ## Best Practices
 [www.terraform-best-practices.com/](https://www.terraform-best-practices.com/)
+
+
+
+# Getting Started
+1. install Terraform CLI
+1. Create / login into GCP Console.
+1. Create / Find Project
+1. Enable Compute Engine API
+1. Create Service Account Credentials with Editor role and download json and move to project folder.
+1. create terraform.tfvars  
+```JSON
+project          = "<PROJECT_ID>"
+credentials_file = "<CREDENTIALS>.json"
+```
+1. update with project id and Credentials
+
+## How to Run
+1. format Terraform
+```Cmd
+terraform fmt
+```
+2. validate
+```Cmd
+terraform validate
+```
+3. plan
+```Cmd
+terraform plan
+```
+same plan name
+```Cmd
+terraform plan -o "planName"
+```
+4. apply
+```Cmd
+terraform apply
+```
