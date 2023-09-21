@@ -38,6 +38,17 @@ jobs:
     - run: npm run build --if-present
     # npm test
     - run: npm test
+
+  docker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: react-app/
+    env:
+      VERSION: ${{ github.ref == 'refs/heads/main' && 'latest' || github.event.number}} # if main use latest otherwise we use the pr number
+    steps:
+    # check out
+    - uses: actions/checkout@v3
     # setup QEMU
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -54,7 +65,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: "{{defaultContext}}:react-app"
         push: true
         tags: ${{vars.DOCKERHUB_REPOSITORY }}:${{env.VERSION}}
 
