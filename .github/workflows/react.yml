@@ -20,6 +20,8 @@ jobs:
     defaults:
         run:
           working-directory: react-app/
+    env:
+      VERSION: ${{ github.ref == 'refs/heads/main' && 'latest' || ${{ github.run_number }} }}
     steps:
     # check out
     - uses: actions/checkout@v3
@@ -49,16 +51,9 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     # docker build and push
-      if: ${{GITHUB_EVENT_NAME}} == "push"
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ${{vars.DOCKERHUB_REPOSITORY }}:latest
+        tags: ${{vars.DOCKERHUB_REPOSITORY }}:${{env.VERSION}}
 
-      if: ${{GITHUB_EVENT_NAME}} == "pull request"
-    - name: Build and push
-      uses: docker/build-push-action@v5
-      with:
-        push: true
-        tags: ${{vars.DOCKERHUB_REPOSITORY }}:${{ github.run_number }} 
