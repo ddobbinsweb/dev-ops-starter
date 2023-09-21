@@ -21,7 +21,7 @@ jobs:
         run:
           working-directory: react-app/
     env:
-      VERSION: ${{ github.ref == 'refs/heads/main' && 'latest' || github.run_number }}
+      VERSION: ${{ github.ref == 'refs/heads/main' && 'latest' || github.event.number}} # if main use latest otherwise we use the pr number
     steps:
     # check out
     - uses: actions/checkout@v3
