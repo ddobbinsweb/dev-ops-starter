@@ -20,6 +20,8 @@ jobs:
     defaults:
         run:
           working-directory: react-app/
+    env:
+      VERSION: if github.event == 'pull request' && '${github.ref_number}' | 'latest' 
     steps:
 
     - uses: actions/checkout@v3
