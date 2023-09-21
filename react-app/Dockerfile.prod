@@ -1,0 +1,28 @@
+# build environment
+FROM node:lts-alpine as build
+
+# working directory
+WORKDIR /react-app/src
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /react-app/node_modules/.bin:$PATH
+
+#install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm ci --silent
+RUN npm install react-scripts@5.0.1 -g --silent
+
+# add app
+COPY . ./
+
+# create build
+RUN npm run build
+
+
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /react-app/src/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -151,3 +151,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# docker
+node_modules
+build
+.dockerignore

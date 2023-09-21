@@ -72,3 +72,35 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Workflow
 1. example [here](../.github/workflows/react.yml)
+
+## Containerizing
+following this tutorial [here](https://mherman.org/blog/dockerizing-a-react-app/)
+
+### Dev
+1. build
+```Cmd
+docker build -t appname:dev .
+```
+1. docker compose
+```Cmd
+ docker-compose up -d --build
+```
+1. docker stop
+```Cmd
+docker-compose stop
+```
+
+### Prod
+
+1. build
+```Cmd
+ docker build -f Dockerfile.prod -t appname:prod .
+```
+1. docker compose
+```Cmd
+docker-compose -f docker-compose.prod.yml up -d --build
+```
+1. docker stop
+```Cmd
+docker-compose -f docker-compose.prod.yml stop
+```
