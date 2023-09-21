@@ -54,6 +54,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        context: /react-app/
         push: true
         tags: ${{vars.DOCKERHUB_REPOSITORY }}:${{env.VERSION}}
 
