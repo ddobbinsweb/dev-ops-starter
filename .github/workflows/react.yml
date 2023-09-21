@@ -20,9 +20,16 @@ jobs:
     defaults:
         run:
           working-directory: react-app/
-    env:
-      VERSION: if github.event == 'pull request' && '${github.ref_number}' | 'latest' 
     steps:
+
+    - name: Set env VERSION
+      run: |
+          if [[ $BRANCH == 'master' && $GITHUB_EVENT_NAME == 'push' ]]; then
+              echo "VERSION='latest'" >> "$GITHUB_ENV"
+          else
+              echo "VERSION=${{ github.run_number }} " >> "$GITHUB_ENV"
+          fi
+
     # check out
     - uses: actions/checkout@v3
     # setup node
