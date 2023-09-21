@@ -24,7 +24,7 @@ jobs:
 
     - name: Set env VERSION
       run: |
-          if [[ ${GITHUB_REF#refs/heads/}}== 'main' && $GITHUB_EVENT_NAME == 'push' ]]; then
+          if [[ GITHUB_REF#refs/heads/ == 'main' && $GITHUB_EVENT_NAME == 'push' ]]; then
               echo "VERSION='latest'" >> "$GITHUB_ENV"
           else
               echo "VERSION=${{ github.run_number }} " >> "$GITHUB_ENV"
