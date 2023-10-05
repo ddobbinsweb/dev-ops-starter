@@ -1,0 +1,71 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: React CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'react-app/Dockerfile.prod'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'react-app/Dockerfile'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+          working-directory: react-app/
+    steps:
+    # check out
+    - uses: actions/checkout@v3
+    # setup node
+    - name: Use Node.js 
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json' 
+    # npm install    
+    - run: npm ci
+    # npm build
+    - run: npm run build --if-present
+    # npm test
+    - run: npm test
+  terraform:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+  gcp-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    needs: terraform
+    defaults:
+      run:
+        working-directory: react-app/
+   
+    steps:
+    # check out
+    - uses: actions/checkout@v3
+    # gcp auth
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+    # gcloud sdk setup
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+    # file upload
+    - id: 'upload-file'
+      uses: 'google-github-actions/upload-cloud-storage@v1'
+      with:
+        path: '/react-app/build'
+        destination: 'front-end-ui'
+        parent: false
