@@ -23,7 +23,7 @@ jobs:
       id: az-values
       run: |
         version=$(az --version) >>  "$GITHUB_OUTPUT"
-        secret=$(az keyvault secret show --vault-name ${{ secret.AZURE_KEY_VAULT_NAME }} - --name ${{ secret.AZURE_KEY_VAULT_SECRET_NAME }} --query value -o tsv) >> "$GITHUB_OUTPUT"
+        secret=$(az keyvault secret show --vault-name ${{ secret.AZURE_KEY_VAULT_NAME }} --name ${{ secret.AZURE_KEY_VAULT_SECRET_NAME }} --query value -o tsv) >> "$GITHUB_OUTPUT"
       # example of vault outputs
     - name: Use keyVault Values
       run: |
