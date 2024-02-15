@@ -27,8 +27,8 @@ jobs:
       # example of vault outputs
     - name: Use keyVault Values
       run: |
-        echo ${{ steps.az-values.output.version }}
-        echo ${{ steps.az-values.output.secret }}
+        echo ${{ steps.az-values.outputs.version }}
+        echo ${{ steps.az-values.outputs.secret }}
       # Harden Security
     - name: Azure Logout
       uses: azure/CLI@v1
